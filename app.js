@@ -11,11 +11,11 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 const app = express();
 
 app.set('view engine', 'ejs');
-
+var posts=[];
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.get("/",function(req,res){
-  res.render("home",{text1:homeStartingContent})
+  res.render("home",{text1:homeStartingContent,posts:posts})
 })
 
 app.get("/about",function(req,res){
@@ -28,8 +28,12 @@ app.get("/compose",function(req,res){
   res.render("compose")
 })
 app.post("/compose",function(req,res){
-  var posts=req.body.post
-  console.log(req.body.post)
+  var postParts={
+    postTitle:req.body.postTitle,
+    postContent:req.body.postContent
+  }
+  posts.push(postParts)
+  res.redirect("/")
 })
 app.listen(3000, function() {
   console.log("Server started on port 3000");
