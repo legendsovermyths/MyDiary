@@ -15,21 +15,22 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.get("/",function(req,res){
-  res.render("home")
+  res.render("home",{text1:homeStartingContent})
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
+app.get("/about",function(req,res){
+  res.render("about",{text2:aboutContent})
+})
+app.get("/contact",function(req,res){
+  res.render("contact",{text3:contactContent})
+})
+app.get("/compose",function(req,res){
+  res.render("compose")
+})
+app.post("/compose",function(req,res){
+  var posts=req.body.post
+  console.log(req.body.post)
+})
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
