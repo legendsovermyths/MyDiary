@@ -6,7 +6,8 @@
     <%=posts[i].postTitle%>
   </h1>
   <p>
-    <%=posts[i].postContent%>
+    <%=posts[i].postContent.substring(0, 100)+"..."%>
+    <a href="/post/<%=posts[i].postTitle%>">Read more</a>
   </p>
 <%}%>
 <%- include('partials/footer') %>
